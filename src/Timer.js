@@ -7,6 +7,14 @@ class Timer extends Component {
   };
 
   // add your code here
+  componentDidMount() {
+    this.interval = setInterval(this.clockTick, 1000)
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.interval);
+    console.log("hi this is timer component")
+  }
 
   render() {
     const { time, color } = this.state;
@@ -33,7 +41,9 @@ class Timer extends Component {
 
   // for the 'x' button,
   handleClose = () => {
+    console.log("handleclose");
     this.props.removeTimer(this.props.id);
+
   };
 }
 

@@ -12,7 +12,10 @@ class App extends Component {
 
   //Your code here:
 
-
+  componentDidMount() {
+   this.handleAddTimer();
+   console.log("I'm here")
+  }
 
 
 
@@ -39,6 +42,7 @@ class App extends Component {
 
   // returns array of components written in JSX, mapped from this.state.timerIDs
   renderTimers = () => this.state.timerIDs.map(id => {
+    console.log(id);
     return <Timer key={id} id={id} removeTimer={this.removeTimer} />
   })
 
@@ -53,7 +57,12 @@ class App extends Component {
   removeTimer = id => {
     this.setState(prevState => ({
       timerIDs: prevState.timerIDs.filter(timer_id => timer_id !== id)
-    }))
+      
+    })
+    )
+    // since the id is tied to a state, when we filter that id, it will remove the corresponding time component due to the id no longer being a part of the state. componentWillUnmount will execute after
+    // this function has been executed
+    console.log("remove timer");
   }
 
 
